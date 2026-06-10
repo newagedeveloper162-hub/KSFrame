@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KSFrames — Creative Design Studio</title>
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts & Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#1B1B2F',
+            teal: '#2EC4B6',
+            coral: '#FF6B6B',
+            gold: '#F9A825',
+            offwhite: '#F8F9FA',
+            charcoal: '#2D3436',
+            softgray: '#DFE6E9',
+          },
+          fontFamily: {
+            heading: ['Montserrat', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+            accent: ['Playfair Display', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-offwhite text-charcoal font-body antialiased">
+
+  <!-- Glassmorphic Navigation -->
+  <nav class="glass-nav fixed top-0 left-0 w-full z-50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <!-- Logo wordmark with subtle corner bracket decoration -->
+      <a href="#hero" class="flex items-center group">
+        <div class="relative py-1 px-2 border border-transparent group-hover:border-teal/30 transition-all">
+          <!-- Logo corner marks -->
+          <div class="absolute top-0 left-0 w-2 h-2 border-t border-l border-teal"></div>
+          <div class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-teal"></div>
+          
+          <span class="font-heading font-extrabold text-[#2EC4B6] text-xl tracking-wide">KS</span><span class="font-heading font-normal text-white text-xl tracking-[0.2em] ml-1">FRAMES</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation links -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="#services" class="nav-link text-sm uppercase tracking-wider font-heading font-medium text-zinc-400 hover:text-white transition-colors">Services</a>
+        <a href="#about" class="nav-link text-sm uppercase tracking-wider font-heading font-medium text-zinc-400 hover:text-white transition-colors">About</a>
+        <a href="#gallery" class="nav-link text-sm uppercase tracking-wider font-heading font-medium text-zinc-400 hover:text-white transition-colors">Gallery</a>
+        <a href="#estimator" class="nav-link text-sm uppercase tracking-wider font-heading font-medium text-zinc-400 hover:text-white transition-colors">Cost Estimator</a>
+        <a href="#contact" class="nav-link text-sm uppercase tracking-wider font-heading font-medium text-zinc-400 hover:text-white transition-colors">Contact</a>
+      </div>
+
+      <!-- Action Button for Desktop -->
+      <div class="hidden md:block">
+        <a href="#contact" class="px-6 py-2.5 bg-teal text-navy hover:bg-transparent hover:text-teal border border-teal font-heading font-bold text-sm uppercase tracking-wider transition-all duration-300">
+          Book Session
+        </a>
+      </div>
+
+      <!-- Hamburger mobile menu trigger button -->
+      <button id="mobile-menu-btn" class="md:hidden text-white hover:text-teal focus:outline-none transition-colors text-2xl" aria-label="Open Mobile Menu">
+        ☰
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Slide-out Navigation Overlay -->
+  <div id="mobile-menu" class="fixed inset-y-0 right-0 w-full max-w-xs bg-navy border-l border-teal/10 z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between p-8">
+    <div>
+      <div class="flex items-center justify-between mb-12">
+        <span class="font-heading font-bold text-teal text-lg tracking-wider">KSFRAMES</span>
+        <!-- Close Menu Button -->
+        <button id="mobile-menu-close" class="text-zinc-400 hover:text-white text-2xl focus:outline-none" aria-label="Close Mobile Menu">
+          ✕
+        </button>
+      </div>
+      <div class="flex flex-col space-y-6">
+        <a href="#services" class="mobile-link font-heading font-medium text-lg text-zinc-300 hover:text-teal transition-colors">Services</a>
+        <a href="#about" class="mobile-link font-heading font-medium text-lg text-zinc-300 hover:text-teal transition-colors">About</a>
+        <a href="#gallery" class="mobile-link font-heading font-medium text-lg text-zinc-300 hover:text-teal transition-colors">Gallery</a>
+        <a href="#estimator" class="mobile-link font-heading font-medium text-lg text-zinc-300 hover:text-teal transition-colors">Cost Estimator</a>
+        <a href="#contact" class="mobile-link font-heading font-medium text-lg text-zinc-300 hover:text-teal transition-colors">Contact</a>
+      </div>
+    </div>
+    <div class="border-t border-zinc-800 pt-6">
+      <a href="#contact" class="block w-full py-3 text-center bg-teal text-navy font-heading font-bold text-sm uppercase tracking-wider transition-colors hover:bg-teal/80">
+        Get Started
+      </a>
+    </div>
+  </div>
+
+  <!-- Hero Section (Deep Navy background with Teal/Coral highlights and frame container) -->
+  <section id="hero" class="relative pt-32 pb-24 md:pt-48 md:pb-36 bg-navy text-white overflow-hidden bg-grid-dots-dark">
+    <!-- Ambient glowing gradients -->
+    <div class="absolute top-0 left-0 right-0 bottom-0 pointer-events-none opacity-40">
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-teal/10 rounded-full blur-[120px]"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-coral/10 rounded-full blur-[120px]"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10 flex flex-col items-center text-center">
+      <!-- Live Status Badge with Pulsing Ring -->
+      <div class="inline-flex items-center space-x-2 bg-white/5 border border-white/10 px-4 py-1.5 rounded-full mb-8 reveal">
+        <span class="glow-dot"></span>
+        <span class="text-xs uppercase tracking-[0.15em] text-zinc-300 font-heading font-semibold">Ready to elevate your presence</span>
+      </div>
+
+      <!-- Hero Content Frame Box Dark -->
+      <div class="frame-box-dark max-w-4xl mx-auto p-8 md:p-16 mb-10 reveal">
+        <!-- Main Bold Typography Headlines -->
+        <h1 class="text-4xl md:text-6xl font-heading font-extrabold text-white leading-[1.1] uppercase tracking-tight mb-6">
+          Make Your Mark.<br>Stand Out.<br><span class="text-teal">Get Noticed.</span>
+        </h1>
+        
+        <!-- Pull Quote Accent using Playfair Display Italic -->
+        <p class="font-accent italic text-xl md:text-2xl text-zinc-300 mb-8 font-light">
+          "Elevating your digital & visual presence. Professional. Clean. Impactful."
+        </p>
+
+        <!-- Bullet highlights of core studio deliverables -->
+        <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs md:text-sm uppercase tracking-widest text-teal font-heading font-semibold">
+          <span>Portfolio Websites</span>
+          <span class="text-zinc-600 hidden md:inline">•</span>
+          <span>Poster Design</span>
+          <span class="text-zinc-600 hidden md:inline">•</span>
+          <span>Video Editing</span>
+          <span class="text-zinc-600 hidden md:inline">•</span>
+          <span>Resume Making</span>
+        </div>
+      </div>
+
+      <!-- Dual Call to Actions (Teal and Coral Accent Buttons) -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center reveal">
+        <a href="#services" id="explore-hero-btn" class="btn-teal px-8 py-4 uppercase tracking-wider text-sm">
+          Explore Services
+        </a>
+        <a href="#contact" class="btn-coral px-8 py-4 uppercase tracking-wider text-sm">
+          Book Free Consultation
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-24 bg-white relative overflow-hidden bg-grid-dots">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16 reveal">
+        <div class="section-header-frame mb-4">
+          <span class="text-xs uppercase tracking-[0.25em] text-coral font-heading font-bold">What We Deliver</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-navy uppercase tracking-tight">Our Core Services</h2>
+        <div class="w-16 h-1 bg-teal mx-auto mt-4"></div>
+        <p class="text-zinc-500 mt-4 max-w-lg mx-auto">We bridge the gap between where you are and where you want to be with scroll-stopping design and clean web technology.</p>
+      </div>
+
+      <!-- 4 Service cards arranged in a beautiful, highly detailed grid -->
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Card 1: Portfolio Websites -->
+        <div class="frame-box accent-card-teal reveal">
+          <div class="flex items-start gap-4 mb-6">
+            <div class="p-3 bg-teal/10 text-teal rounded-lg">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+              </svg>
+            </div>
+            <div>
+              <span class="text-xs font-heading font-bold text-zinc-400 uppercase tracking-widest">Web Engineering</span>
+              <h3 class="text-xl font-heading font-bold text-navy mt-1">Portfolio Websites</h3>
+            </div>
+          </div>
+          <p class="text-zinc-600 mb-6">
+            Clean, responsive personal sites that showcase your best work, pass the developer eye test, and capture critical inbound inquiries. Custom-tailored to build your personal brand.
+          </p>
+          <ul class="space-y-2 mb-8 text-sm text-zinc-500">
+            <li class="flex items-center gap-2"><span class="text-teal font-bold">✓</span> Mobile-first responsive layouts</li>
+            <li class="flex items-center gap-2"><span class="text-teal font-bold">✓</span> Optimized for speed, SEO & accessibility</li>
+            <li class="flex items-center gap-2"><span class="text-teal font-bold">✓</span> Integrated contact & booking triggers</li>
+          </ul>
+          <div class="flex items-center justify-between border-t border-zinc-100 pt-4 mt-auto">
+            <span class="text-xs text-zinc-400 font-heading font-semibold uppercase">Pricing</span>
+            <span class="font-heading font-bold text-navy text-lg">From $499 <span class="text-xs text-teal font-semibold">($299 student rate!)</span></span>
+          </div>
+        </div>
+
+        <!-- Card 2: Poster & Brand Design -->
+        <div class="frame-box accent-card-coral reveal">
+          <div class="flex items-start gap-4 mb-6">
+            <div class="p-3 bg-coral/10 text-coral rounded-lg">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+              </svg>
+            </div>
+            <div>
+              <span class="text-xs font-heading font-bold text-zinc-400 uppercase tracking-widest">Brand Visuals</span>
+              <h3 class="text-xl font-heading font-bold text-navy mt-1">Poster Design</h3>
+            </div>
+          </div>
+          <p class="text-zinc-600 mb-6">
+            Scroll-stopping posters, social templates, and branding assets engineered to stop the feed. Beautiful, high-quality, professional designs without the agency price tag.
+          </p>
+          <ul class="space-y-2 mb-8 text-sm text-zinc-500">
+            <li class="flex items-center gap-2"><span class="text-coral font-bold">✓</span> Multi-platform social graphics pack</li>
+            <li class="flex items-center gap-2"><span class="text-coral font-bold">✓</span> Corporate event flyers & brand assets</li>
+            <li class="flex items-center gap-2"><span class="text-coral font-bold">✓</span> Custom template design kits</li>
+          </ul>
+          <div class="flex items-center justify-between border-t border-zinc-100 pt-4">
+            <span class="text-xs text-zinc-400 font-heading font-semibold uppercase">Pricing</span>
+            <span class="font-heading font-bold text-navy text-lg">From $149</span>
+          </div>
+        </div>
+
+        <!-- Card 3: Reel & Video Editing -->
+        <div class="frame-box accent-card-teal reveal">
+          <div class="flex items-start gap-4 mb-6">
+            <div class="p-3 bg-teal/10 text-teal rounded-lg">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+              </svg>
+            </div>
+            <div>
+              <span class="text-xs font-heading font-bold text-zinc-400 uppercase tracking-widest">Media Motion</span>
+              <h3 class="text-xl font-heading font-bold text-navy mt-1">Video Editing</h3>
+            </div>
+          </div>
+          <p class="text-zinc-600 mb-6">
+            High-energy short-form video and reels edits for Instagram, YouTube Shorts, and TikTok. We handle audio sync, text overlays, color grading, and crisp cinematic transitions.
+          </p>
+          <ul class="space-y-2 mb-8 text-sm text-zinc-500">
+            <li class="flex items-center gap-2"><span class="text-teal font-bold">✓</span> Engaging kinetic typography overlay</li>
+            <li class="flex items-center gap-2"><span class="text-teal font-bold">✓</span> Sound-sync effects & audio master</li>
+            <li class="flex items-center gap-2"><span class="text-teal font-bold">✓</span> Hooks designed to stop scrolling</li>
+          </ul>
+          <div class="flex items-center justify-between border-t border-zinc-100 pt-4">
+            <span class="text-xs text-zinc-400 font-heading font-semibold uppercase">Pricing</span>
+            <span class="font-heading font-bold text-navy text-lg">From $249</span>
+          </div>
+        </div>
+
+        <!-- Card 4: Resume Polishing & ATS Optimization -->
+        <div class="frame-box accent-card-coral reveal">
+          <div class="flex items-start gap-4 mb-6">
+            <div class="p-3 bg-coral/10 text-coral rounded-lg">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+            </div>
+            <div>
+              <span class="text-xs font-heading font-bold text-zinc-400 uppercase tracking-widest">Career Strategy</span>
+              <h3 class="text-xl font-heading font-bold text-navy mt-1">Resume Making</h3>
+            </div>
+          </div>
+          <p class="text-zinc-600 mb-6">
+            ATS-optimized resumes and cover letters designed to score through automated algorithms and command immediate recruiter attention. Turn those ghosted apps into interview offers.
+          </p>
+          <ul class="space-y-2 mb-8 text-sm text-zinc-500">
+            <li class="flex items-center gap-2"><span class="text-coral font-bold">✓</span> Full layout structuring & formatting</li>
+            <li class="flex items-center gap-2"><span class="text-coral font-bold">✓</span> Keyword alignment for recruiter scrapers</li>
+            <li class="flex items-center gap-2"><span class="text-coral font-bold">✓</span> ATS bot-readable semantic code</li>
+          </ul>
+          <div class="flex items-center justify-between border-t border-zinc-100 pt-4">
+            <span class="text-xs text-zinc-400 font-heading font-semibold uppercase">Pricing</span>
+            <span class="font-heading font-bold text-navy text-lg">From $99 <span class="text-xs text-coral font-semibold">($49 student rate!)</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Target Audience Tab Swapping Showcase -->
+  <section class="py-24 bg-navy text-white bg-grid-dots-dark">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16 reveal">
+        <div class="section-header-frame mb-4 border-teal/30">
+          <span class="text-xs uppercase tracking-[0.25em] text-teal font-heading font-bold">Tailored Solutions</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-white uppercase tracking-tight">Who We Serve</h2>
+        <div class="w-16 h-1 bg-teal mx-auto mt-4"></div>
+      </div>
+
+      <!-- Segment Selector Navigation Tabs -->
+      <div class="flex flex-wrap justify-center gap-4 mb-12 reveal">
+        <button class="segment-tab px-6 py-3 border border-teal bg-teal text-navy font-heading font-bold text-sm uppercase tracking-wider transition-all" data-segment="students">
+          For Students
+        </button>
+        <button class="segment-tab px-6 py-3 border border-zinc-800 bg-zinc-900 text-zinc-400 font-heading font-bold text-sm uppercase tracking-wider hover:border-zinc-700 transition-all" data-segment="businesses">
+          For Small Businesses
+        </button>
+        <button class="segment-tab px-6 py-3 border border-zinc-800 bg-zinc-900 text-zinc-400 font-heading font-bold text-sm uppercase tracking-wider hover:border-zinc-700 transition-all" data-segment="professionals">
+          For Professionals
+        </button>
+      </div>
+
+      <!-- Segment Content Grid Panels -->
+      <!-- Segment 1: Students -->
+      <div id="segment-students" class="segment-content grid md:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6 reveal">
+          <div class="inline-block px-3 py-1 bg-teal/10 border border-teal/20 text-teal text-xs uppercase tracking-widest font-semibold font-heading">Student Launch Pack</div>
+          <h3 class="text-2xl md:text-3xl font-heading font-bold">Land That Dream Role. Beat the Bot.</h3>
+          <p class="text-zinc-300">
+            Tired of resume ghosting? Our student packages are designed specifically for fresh graduates and internship seekers. We bundle modern portfolio websites with ATS-optimized, bot-readable resume formatting. Affordable, impactful, and designed to secure recruiter attention.
+          </p>
+          <ul class="space-y-2 text-zinc-400 text-sm">
+            <li class="flex items-center gap-2"><span class="text-teal font-bold">✓</span> Low student-friendly budget packages</li>
+            <li class="flex items-center gap-2"><span class="text-teal font-bold">✓</span> Beautiful single-page portfolio layout</li>
+            <li class="flex items-center gap-2"><span class="text-teal font-bold">✓</span> Recruiter screening keyword injection</li>
+          </ul>
+        </div>
+        <div class="border border-teal/20 bg-zinc-950 p-8 rounded-lg relative reveal">
+          <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-teal"></div>
+          <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-teal"></div>
+          <span class="text-xs uppercase tracking-widest text-zinc-500 font-semibold font-heading">Featured Bundle Offer</span>
+          <h4 class="text-xl font-bold mt-2 text-teal">Website + Resume Bundle</h4>
+          <p class="text-zinc-400 text-sm mt-3">Combining our custom responsive code portfolio with ATS formatting. Highly recommended first step.</p>
+          <div class="mt-6 flex items-baseline gap-2">
+            <span class="text-3xl font-heading font-extrabold text-white">$299</span>
+            <span class="text-zinc-500 text-xs line-through">$598 Value</span>
+          </div>
+          <a href="#estimator" class="block w-full py-2.5 text-center bg-teal text-navy mt-6 font-heading font-bold uppercase text-xs tracking-wider hover:bg-teal/80 transition-colors">Configure and Apply</a>
+        </div>
+      </div>
+
+      <!-- Segment 2: Businesses (Hidden by default) -->
+      <div id="segment-businesses" class="segment-content hidden md:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+          <div class="inline-block px-3 py-1 bg-coral/10 border border-coral/20 text-coral text-xs uppercase tracking-widest font-semibold font-heading">Social Creator Package</div>
+          <h3 class="text-2xl md:text-3xl font-heading font-bold">Stop Scrolling. Scale Your Audience.</h3>
+          <p class="text-zinc-300">
+            For small businesses, local brands, and social creators looking to level up their authority. We handle visual assets, Instagram reel formatting, transitions, and poster packages to build a cohesive social media system. High design without high fees.
+          </p>
+          <ul class="space-y-2 text-zinc-400 text-sm">
+            <li class="flex items-center gap-2"><span class="text-coral font-bold">✓</span> Dynamic Instagram reel editing & subtitle loops</li>
+            <li class="flex items-center gap-2"><span class="text-coral font-bold">✓</span> Customized design posters & content batches</li>
+            <li class="flex items-center gap-2"><span class="text-coral font-bold">✓</span> Brand authority template styles</li>
+          </ul>
+        </div>
+        <div class="border border-coral/20 bg-zinc-950 p-8 rounded-lg relative">
+          <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-coral"></div>
+          <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-coral"></div>
+          <span class="text-xs uppercase tracking-widest text-zinc-500 font-semibold font-heading">Featured Bundle Offer</span>
+          <h4 class="text-xl font-bold mt-2 text-coral">Brand Launch Package</h4>
+          <p class="text-zinc-400 text-sm mt-3">Combines Custom Web Landing Page + Custom Reels Batch + Poster Pack. Establish total authority.</p>
+          <div class="mt-6 flex items-baseline gap-2">
+            <span class="text-3xl font-heading font-extrabold text-white">$699</span>
+            <span class="text-zinc-500 text-xs line-through">$897 Value</span>
+          </div>
+          <a href="#estimator" class="block w-full py-2.5 text-center bg-coral text-white mt-6 font-heading font-bold uppercase text-xs tracking-wider hover:bg-coral/80 transition-colors">Configure and Apply</a>
+        </div>
+      </div>
+
+      <!-- Segment 3: Professionals (Hidden by default) -->
+      <div id="segment-professionals" class="segment-content hidden md:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+          <div class="inline-block px-3 py-1 bg-teal/10 border border-teal/20 text-teal text-xs uppercase tracking-widest font-semibold font-heading">Personal Brand Suite</div>
+          <h3 class="text-2xl md:text-3xl font-heading font-bold">Establish Modern Domain Authority.</h3>
+          <p class="text-zinc-300">
+            For working professionals looking to transition roles or capture consulting agreements. We design responsive, clean websites that serve as a centralized personal hub, polished with highly professional resumes to match your status.
+          </p>
+          <ul class="space-y-2 text-zinc-400 text-sm">
+            <li class="flex items-center gap-2"><span class="text-teal font-bold">✓</span> Custom domains & portfolio setup</li>
+            <li class="flex items-center gap-2"><span class="text-teal font-bold">✓</span> Elite-level professional biography writing</li>
+            <li class="flex items-center gap-2"><span class="text-teal font-bold">✓</span> Minimalist aesthetic designed for authority</li>
+          </ul>
+        </div>
+        <div class="border border-teal/20 bg-zinc-950 p-8 rounded-lg relative">
+          <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-teal"></div>
+          <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-teal"></div>
+          <span class="text-xs uppercase tracking-widest text-zinc-500 font-semibold font-heading">Featured Offer</span>
+          <h4 class="text-xl font-bold mt-2 text-teal">Personal Brand Pack</h4>
+          <p class="text-zinc-400 text-sm mt-3">Portfolio Website + ATS Resume Polish standard package customized for your unique field of work.</p>
+          <div class="mt-6 flex items-baseline gap-2">
+            <span class="text-3xl font-heading font-extrabold text-white">$499</span>
+            <span class="text-zinc-500 text-xs line-through">$598 Value</span>
+          </div>
+          <a href="#estimator" class="block w-full py-2.5 text-center bg-teal text-navy mt-6 font-heading font-bold uppercase text-xs tracking-wider hover:bg-teal/80 transition-colors">Configure and Apply</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section with Team Roster matching AI Agent details -->
+  <section id="about" class="py-24 bg-white relative overflow-hidden bg-grid-dots">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16 reveal">
+        <div class="section-header-frame mb-4">
+          <span class="text-xs uppercase tracking-[0.25em] text-coral font-heading font-bold">Who We Are</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-navy uppercase tracking-tight">About KSFrames</h2>
+        <div class="w-16 h-1 bg-teal mx-auto mt-4"></div>
+        <p class="text-zinc-500 mt-4 max-w-lg mx-auto">We are a specialized creative design studio structured around highly-integrated roles to deliver pixel-perfect visual products.</p>
+      </div>
+
+      <!-- KSFrames Studio Mission Narrative Statement -->
+      <div class="frame-box mb-16 p-8 md:p-12 text-center reveal">
+        <p class="font-accent italic text-2xl text-zinc-700 leading-relaxed max-w-4xl mx-auto mb-6">
+          "A creative design studio that helps individuals, students, and businesses build a strong digital and visual presence. We deliver clean, modern, and impactful designs — making every client look professional, stand out, and get noticed."
+        </p>
+        <p class="text-zinc-500 text-sm uppercase tracking-widest font-heading font-semibold">— KSFrames Studio Mission Statement</p>
+      </div>
+
+      <!-- Team Members Roster Grid representing actual agents -->
+      <h3 class="text-xl font-heading font-bold text-center text-navy uppercase tracking-widest mb-10 reveal">Meet Our Specialist Team</h3>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+        <!-- Lead Architect -->
+        <div class="border border-zinc-100 bg-zinc-50/50 p-6 flex flex-col items-center text-center rounded-lg reveal">
+          <div class="w-16 h-16 bg-navy text-teal rounded-full flex items-center justify-center font-bold font-heading text-lg mb-4">L</div>
+          <span class="text-xs font-heading font-bold text-coral uppercase tracking-widest">Team Lead</span>
+          <h4 class="font-heading font-bold text-navy text-sm mt-1">Lead Agent</h4>
+          <p class="text-zinc-500 text-xs mt-3 leading-relaxed">High-level strategic management, task coordination, and product quality checks.</p>
+        </div>
+
+        <!-- Web Developer -->
+        <div class="border border-zinc-100 bg-zinc-50/50 p-6 flex flex-col items-center text-center rounded-lg reveal">
+          <div class="w-16 h-16 bg-teal text-navy rounded-full flex items-center justify-center font-bold font-heading text-lg mb-4">WD</div>
+          <span class="text-xs font-heading font-bold text-teal uppercase tracking-widest">Web Architect</span>
+          <h4 class="font-heading font-bold text-navy text-sm mt-1">Web Developer</h4>
+          <p class="text-zinc-500 text-xs mt-3 leading-relaxed">Transforms wireframes into responsive websites with high-performance CSS and JS.</p>
+        </div>
+
+        <!-- Creative Designer -->
+        <div class="border border-zinc-100 bg-zinc-50/50 p-6 flex flex-col items-center text-center rounded-lg reveal">
+          <div class="w-16 h-16 bg-navy text-white rounded-full flex items-center justify-center font-bold font-heading text-lg mb-4">CD</div>
+          <span class="text-xs font-heading font-bold text-zinc-400 uppercase tracking-widest">Brand Designer</span>
+          <h4 class="font-heading font-bold text-navy text-sm mt-1">Creative Designer</h4>
+          <p class="text-zinc-500 text-xs mt-3 leading-relaxed">Designs stunning posters, graphic templates, logos, and high-fidelity wireframes.</p>
+        </div>
+
+        <!-- Video Editor -->
+        <div class="border border-zinc-100 bg-zinc-50/50 p-6 flex flex-col items-center text-center rounded-lg reveal">
+          <div class="w-16 h-16 bg-coral text-white rounded-full flex items-center justify-center font-bold font-heading text-lg mb-4">VE</div>
+          <span class="text-xs font-heading font-bold text-coral uppercase tracking-widest">Media Editor</span>
+          <h4 class="font-heading font-bold text-navy text-sm mt-1">Video Editor</h4>
+          <p class="text-zinc-500 text-xs mt-3 leading-relaxed">Crafts cinematic reels with fast cuts, trend audio sync, and interactive captions.</p>
+        </div>
+
+        <!-- Marketing & Sales -->
+        <div class="border border-zinc-100 bg-zinc-50/50 p-6 flex flex-col items-center text-center rounded-lg reveal">
+          <div class="w-16 h-16 bg-zinc-800 text-teal rounded-full flex items-center justify-center font-bold font-heading text-lg mb-4">MS</div>
+          <span class="text-xs font-heading font-bold text-zinc-400 uppercase tracking-widest">Copy Strategist</span>
+          <h4 class="font-heading font-bold text-navy text-sm mt-1">Marketing & Sales</h4>
+          <p class="text-zinc-500 text-xs mt-3 leading-relaxed">Architects marketing campaigns, writes persuasive copywriting, and client outreach.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Gallery Section (Filterable Showcase with placeholder wireframes) -->
+  <section id="gallery" class="py-24 bg-offwhite relative overflow-hidden bg-grid-dots">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16 reveal">
+        <div class="section-header-frame mb-4">
+          <span class="text-xs uppercase tracking-[0.25em] text-coral font-heading font-bold">Showcase Portfolio</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-navy uppercase tracking-tight">Our Work Gallery</h2>
+        <div class="w-16 h-1 bg-teal mx-auto mt-4"></div>
+      </div>
+
+      <!-- Gallery Filter Toggle Buttons -->
+      <div class="flex flex-wrap justify-center gap-3 mb-12 reveal">
+        <button class="filter-btn px-5 py-2 border border-teal bg-teal text-navy font-heading font-bold text-xs uppercase tracking-wider transition-all" data-filter="all">All Work</button>
+        <button class="filter-btn px-5 py-2 border border-zinc-200 bg-white text-zinc-500 font-heading font-bold text-xs uppercase tracking-wider hover:bg-zinc-100 transition-all" data-filter="web">Websites</button>
+        <button class="filter-btn px-5 py-2 border border-zinc-200 bg-white text-zinc-500 font-heading font-bold text-xs uppercase tracking-wider hover:bg-zinc-100 transition-all" data-filter="design">Posters</button>
+        <button class="filter-btn px-5 py-2 border border-zinc-200 bg-white text-zinc-500 font-heading font-bold text-xs uppercase tracking-wider hover:bg-zinc-100 transition-all" data-filter="video">Video Reels</button>
+        <button class="filter-btn px-5 py-2 border border-zinc-200 bg-white text-zinc-500 font-heading font-bold text-xs uppercase tracking-wider hover:bg-zinc-100 transition-all" data-filter="resume">Resumes</button>
+      </div>
+
+      <!-- Gallery Grid of interactive wireframe placeholders -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 relative" style="min-height: 400px;">
+        <!-- Card 1: Web Concept -->
+        <div class="gallery-item frame-box flex flex-col justify-between" data-category="web">
+          <div>
+            <!-- Styled Wireframe UI Graphic placeholder -->
+            <div class="w-full h-36 bg-zinc-100 border border-zinc-200 flex flex-col justify-between p-3 rounded-md mb-4 relative overflow-hidden group">
+              <div class="flex items-center gap-1.5 border-b border-zinc-200 pb-2 mb-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-zinc-300"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-zinc-300"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-zinc-300"></span>
+                <div class="h-3 w-2/3 bg-zinc-200 rounded ml-2"></div>
+              </div>
+              <div class="space-y-2 flex-grow">
+                <div class="h-4 w-4/5 bg-zinc-300 rounded"></div>
+                <div class="h-2 w-full bg-zinc-200 rounded"></div>
+                <div class="h-2 w-5/6 bg-zinc-200 rounded"></div>
+              </div>
+              <div class="h-5 w-20 bg-teal/20 rounded"></div>
+            </div>
+            <span class="text-xs font-heading font-semibold text-teal uppercase tracking-widest">Web Development</span>
+            <h4 class="font-heading font-bold text-navy text-base mt-1">E-Commerce Portfolio</h4>
+          </div>
+          <p class="text-zinc-500 text-xs mt-2">Beautiful personal gallery engineered for visual artists and creative freelancers.</p>
+        </div>
+
+        <!-- Card 2: Poster Template -->
+        <div class="gallery-item frame-box flex flex-col justify-between" data-category="design">
+          <div>
+            <div class="w-full h-36 bg-zinc-100 border border-zinc-200 flex flex-col justify-between p-3 rounded-md mb-4 relative overflow-hidden">
+              <div class="absolute inset-0 bg-gradient-to-tr from-coral/10 to-teal/10"></div>
+              <div class="relative h-full flex flex-col justify-between z-10">
+                <div class="h-4 w-2/3 bg-coral/20 rounded"></div>
+                <div class="border border-zinc-300 w-16 h-16 self-center rounded flex items-center justify-center text-xs font-bold font-heading text-zinc-400">FRAME</div>
+                <div class="h-2 w-1/2 bg-zinc-300 rounded"></div>
+              </div>
+            </div>
+            <span class="text-xs font-heading font-semibold text-coral uppercase tracking-widest">Poster Design</span>
+            <h4 class="font-heading font-bold text-navy text-base mt-1">Brand Launch Flyer</h4>
+          </div>
+          <p class="text-zinc-500 text-xs mt-2">Geometric high-impact event marketing poster designed for digital distribution.</p>
+        </div>
+
+        <!-- Card 3: Video Reel mock -->
+        <div class="gallery-item frame-box flex flex-col justify-between" data-category="video">
+          <div>
+            <div class="w-full h-36 bg-zinc-100 border border-zinc-200 flex items-center justify-center rounded-md mb-4 relative overflow-hidden">
+              <div class="absolute inset-y-0 w-24 bg-zinc-200 border-l border-r border-zinc-300 flex flex-col justify-between py-4 px-2">
+                <div class="h-2 w-full bg-zinc-300 rounded"></div>
+                <!-- Play button graphic -->
+                <div class="w-8 h-8 rounded-full bg-teal/20 flex items-center justify-center self-center text-teal">▶</div>
+                <div class="h-2 w-2/3 bg-zinc-300 rounded"></div>
+              </div>
+            </div>
+            <span class="text-xs font-heading font-semibold text-teal uppercase tracking-widest">Video Editing</span>
+            <h4 class="font-heading font-bold text-navy text-base mt-1">Short-Form Creator Reels</h4>
+          </div>
+          <p class="text-zinc-500 text-xs mt-2">Kinetic captions and high energy music sync templates optimized for maximum reach.</p>
+        </div>
+
+        <!-- Card 4: Resume Formatting -->
+        <div class="gallery-item frame-box flex flex-col justify-between" data-category="resume">
+          <div>
+            <div class="w-full h-36 bg-zinc-100 border border-zinc-200 p-3 rounded-md mb-4 flex gap-3 overflow-hidden">
+              <div class="w-1/3 bg-zinc-200 h-full rounded flex flex-col gap-2 p-1.5">
+                <div class="w-8 h-8 rounded-full bg-zinc-300 self-center"></div>
+                <div class="h-1.5 w-full bg-zinc-300 rounded"></div>
+                <div class="h-1.5 w-2/3 bg-zinc-300 rounded"></div>
+              </div>
+              <div class="flex-grow space-y-2 py-1">
+                <div class="h-3 w-4/5 bg-zinc-300 rounded"></div>
+                <div class="h-1.5 w-full bg-zinc-200 rounded"></div>
+                <div class="h-1.5 w-full bg-zinc-200 rounded"></div>
+                <div class="h-1.5 w-full bg-zinc-200 rounded"></div>
+                <div class="h-1.5 w-5/6 bg-zinc-200 rounded"></div>
+              </div>
+            </div>
+            <span class="text-xs font-heading font-semibold text-coral uppercase tracking-widest">Resume Polish</span>
+            <h4 class="font-heading font-bold text-navy text-base mt-1">ATS-Optimized CV Layout</h4>
+          </div>
+          <p class="text-zinc-500 text-xs mt-2">Structured layout system passing parsing engines while preserving clean layout aesthetic.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dynamic Cost Estimator & Quote Calculator Section -->
+  <section id="estimator" class="py-24 bg-navy text-white relative bg-grid-dots-dark">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-12 reveal">
+        <div class="section-header-frame border-teal/30 mb-4">
+          <span class="text-xs uppercase tracking-[0.25em] text-teal font-heading font-bold">Bundle Pricing</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-white uppercase tracking-tight">Project Estimate Calculator</h2>
+        <div class="w-16 h-1 bg-teal mx-auto mt-4"></div>
+        <p class="text-zinc-400 text-sm mt-4">Toggle the design and technical modules you require. Combine packages to activate auto-applied studio bundle discounts!</p>
+      </div>
+
+      <!-- Calculator Box Frame container -->
+      <div class="frame-box-dark p-8 md:p-12 bg-zinc-950/80 reveal">
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+          
+          <!-- Modules Checklist Selection -->
+          <div class="space-y-6">
+            <h3 class="font-heading font-bold text-lg text-teal uppercase tracking-widest mb-2">Select Services</h3>
+            
+            <!-- Module 1: Website -->
+            <label class="flex items-start gap-3 cursor-pointer group">
+              <input type="checkbox" class="calc-checkbox mt-1.5 form-checkbox accent-teal h-5 w-5 bg-navy border-zinc-700" data-service="web" checked>
+              <div class="flex-grow select-none">
+                <div class="flex justify-between items-baseline">
+                  <span class="font-heading font-bold text-sm group-hover:text-teal transition-colors">Portfolio Website</span>
+                  <span id="price-val-web" class="text-teal font-heading font-semibold text-sm">$499</span>
+                </div>
+                <p class="text-xs text-zinc-400 mt-1">Full responsive code development & custom asset hosting.</p>
+              </div>
+            </label>
+
+            <!-- Module 2: Posters -->
+            <label class="flex items-start gap-3 cursor-pointer group">
+              <input type="checkbox" class="calc-checkbox mt-1.5 form-checkbox accent-teal h-5 w-5 bg-navy border-zinc-700" data-service="poster">
+              <div class="flex-grow select-none">
+                <div class="flex justify-between items-baseline">
+                  <span class="font-heading font-bold text-sm group-hover:text-teal transition-colors">Poster & Brand Templates</span>
+                  <span id="price-val-poster" class="text-teal font-heading font-semibold text-sm">$149</span>
+                </div>
+                <p class="text-xs text-zinc-400 mt-1">Includes 5 scroll-stopping social and commercial posters.</p>
+              </div>
+            </label>
+
+            <!-- Module 3: Video editing -->
+            <label class="flex items-start gap-3 cursor-pointer group">
+              <input type="checkbox" class="calc-checkbox mt-1.5 form-checkbox accent-teal h-5 w-5 bg-navy border-zinc-700" data-service="video">
+              <div class="flex-grow select-none">
+                <div class="flex justify-between items-baseline">
+                  <span class="font-heading font-bold text-sm group-hover:text-teal transition-colors">Video & Reel Editing</span>
+                  <span id="price-val-video" class="text-teal font-heading font-semibold text-sm">$249</span>
+                </div>
+                <p class="text-xs text-zinc-400 mt-1">Pack of 3 professional, audio synced, captioned short reels.</p>
+              </div>
+            </label>
+
+            <!-- Module 4: Resume Polish -->
+            <label class="flex items-start gap-3 cursor-pointer group">
+              <input type="checkbox" class="calc-checkbox mt-1.5 form-checkbox accent-teal h-5 w-5 bg-navy border-zinc-700" data-service="resume">
+              <div class="flex-grow select-none">
+                <div class="flex justify-between items-baseline">
+                  <span class="font-heading font-bold text-sm group-hover:text-teal transition-colors">ATS Resume Making</span>
+                  <span id="price-val-resume" class="text-teal font-heading font-semibold text-sm">$99</span>
+                </div>
+                <p class="text-xs text-zinc-400 mt-1">Structured layout design optimizing readability for bot parsers.</p>
+              </div>
+            </label>
+
+            <!-- Special Student Mode Toggle -->
+            <div class="border-t border-zinc-800 pt-6 mt-6">
+              <label class="flex items-center gap-3 cursor-pointer bg-white/5 p-3 border border-white/10 rounded-lg group">
+                <input type="checkbox" id="calc-student-toggle" class="form-checkbox accent-coral h-5 w-5 bg-navy border-zinc-700">
+                <div class="select-none">
+                  <span class="font-heading font-bold text-xs uppercase tracking-widest text-coral group-hover:text-coral/80 transition-colors">I am a Student / Fresh Graduate</span>
+                  <p class="text-[10px] text-zinc-400 mt-0.5">Activates reduced budget pricing on Websites ($299) and Resumes ($49)!</p>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Dynamic pricing display screen -->
+          <div class="bg-zinc-900 p-6 border border-zinc-800 flex flex-col justify-between h-full min-h-[300px] rounded-lg">
+            <div>
+              <span class="text-xs uppercase tracking-widest text-zinc-500 font-bold font-heading">Estimate Summary</span>
+              <div class="w-10 h-0.5 bg-teal mt-2 mb-6"></div>
+              
+              <!-- Subtotal -->
+              <div class="flex justify-between items-center text-sm mb-3 text-zinc-400">
+                <span>Subtotal Modules:</span>
+                <span id="calc-subtotal" class="font-heading font-medium text-white">$499</span>
+              </div>
+
+              <!-- Discount percentage / Bundle trigger status -->
+              <div class="flex justify-between items-center text-sm mb-3 text-zinc-400">
+                <span>Applied Discount:</span>
+                <span id="calc-discount-pct" class="font-heading font-medium text-coral">0%</span>
+              </div>
+
+              <!-- Total savings cash -->
+              <div class="flex justify-between items-center text-sm mb-6 text-zinc-400 pb-4 border-b border-zinc-800">
+                <span>Total Savings:</span>
+                <span id="calc-savings" class="font-heading font-medium text-teal">$0</span>
+              </div>
+            </div>
+
+            <div>
+              <span class="text-[10px] uppercase tracking-wider text-zinc-500">Estimated Total Rate</span>
+              <div id="calc-total" class="text-4xl font-heading font-extrabold text-teal mt-1 mb-6 transition-all duration-300">$499</div>
+              
+              <button id="calc-apply-form" class="w-full py-3 bg-teal text-navy font-heading font-bold text-xs uppercase tracking-widest transition-colors hover:bg-teal/80">
+                Apply Quote to Booking
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form Section -->
+  <section id="contact" class="py-24 bg-white relative overflow-hidden bg-grid-dots">
+    <div class="max-w-xl mx-auto px-6">
+      <div class="text-center mb-16 reveal">
+        <div class="section-header-frame mb-4">
+          <span class="text-xs uppercase tracking-[0.25em] text-coral font-heading font-bold">Get In Touch</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-navy uppercase tracking-tight">Get a Free Consult</h2>
+        <div class="w-16 h-1 bg-teal mx-auto mt-4"></div>
+        <p class="text-zinc-500 mt-4 max-w-sm mx-auto">Fill out the brief inquiry form below, and our creative studio team will follow up within 24 hours.</p>
+      </div>
+
+      <!-- Elegant Contact Card Box with frame corners -->
+      <div id="contact-form-card" class="frame-box p-8 md:p-10 reveal">
+        <form id="contact-form" class="space-y-6">
+          <!-- Client name -->
+          <div>
+            <label for="contact-name" class="block text-xs uppercase tracking-widest font-heading font-bold text-navy mb-2">Your Full Name</label>
+            <input type="text" id="contact-name" required placeholder="Jane Doe" class="w-full px-4 py-3 bg-zinc-50 border border-zinc-200 focus:outline-none focus:border-teal text-sm transition-colors rounded">
+          </div>
+
+          <!-- Client email -->
+          <div>
+            <label for="contact-email" class="block text-xs uppercase tracking-widest font-heading font-bold text-navy mb-2">Email Address</label>
+            <input type="email" id="contact-email" required placeholder="jane@example.com" class="w-full px-4 py-3 bg-zinc-50 border border-zinc-200 focus:outline-none focus:border-teal text-sm transition-colors rounded">
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <!-- Client Category segment dropdown -->
+            <div>
+              <label for="contact-role" class="block text-xs uppercase tracking-widest font-heading font-bold text-navy mb-2">I am a...</label>
+              <select id="contact-role" class="w-full px-4 py-3 bg-zinc-50 border border-zinc-200 focus:outline-none focus:border-teal text-sm transition-colors rounded">
+                <option value="">Select segment</option>
+                <option value="student">Student / Graduate</option>
+                <option value="business">Small Biz / Creator</option>
+                <option value="professional">Working Professional</option>
+              </select>
+            </div>
+
+            <!-- Client service selection dropdown -->
+            <div>
+              <label for="contact-service" class="block text-xs uppercase tracking-widest font-heading font-bold text-navy mb-2">Service Needed</label>
+              <select id="contact-service" class="w-full px-4 py-3 bg-zinc-50 border border-zinc-200 focus:outline-none focus:border-teal text-sm transition-colors rounded">
+                <option value="web">Portfolio Websites</option>
+                <option value="brand">Poster Design</option>
+                <option value="video">Video Editing</option>
+                <option value="resume">Resume Making</option>
+                <option value="bundle">Module Bundle</option>
+                <option value="other">Other Inquiry</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Project specifics details area -->
+          <div>
+            <label for="contact-details" class="block text-xs uppercase tracking-widest font-heading font-bold text-navy mb-2">Project Details</label>
+            <textarea id="contact-details" rows="4" placeholder="Briefly describe what you're looking to build or edit..." class="w-full px-4 py-3 bg-zinc-50 border border-zinc-200 focus:outline-none focus:border-teal text-sm transition-colors rounded"></textarea>
+          </div>
+
+          <!-- Send request button -->
+          <button type="submit" class="w-full py-4 bg-teal text-navy border-2 border-teal font-heading font-bold text-sm uppercase tracking-wider transition-all duration-300 hover:bg-transparent hover:text-teal">
+            Send Inquiry
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clean minimalist Footer -->
+  <footer class="bg-navy text-white border-t border-teal/10 py-16 relative overflow-hidden bg-grid-dots-dark">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
+      <div class="flex flex-col items-center md:items-start text-center md:text-left">
+        <!-- Footer Wordmark -->
+        <div class="font-heading font-extrabold text-teal text-2xl tracking-wider mb-2">KSFRAMES</div>
+        <p class="text-zinc-400 text-sm max-w-sm">"Elevating your digital & visual presence. Professional. Clean. Impactful."</p>
+      </div>
+
+      <!-- Links footer column -->
+      <div class="flex flex-wrap justify-center gap-6 text-sm text-zinc-400">
+        <a href="#services" class="hover:text-teal transition-colors">Services</a>
+        <a href="#about" class="hover:text-teal transition-colors">About</a>
+        <a href="#gallery" class="hover:text-teal transition-colors">Gallery</a>
+        <a href="#estimator" class="hover:text-teal transition-colors">Cost Estimator</a>
+        <a href="#contact" class="hover:text-teal transition-colors">Contact</a>
+      </div>
+
+      <!-- Copyright label -->
+      <div class="text-xs text-zinc-500 text-center md:text-right">
+        <p>© 2026 KSFrames Creative Design Studio.</p>
+        <p class="mt-1">All rights reserved. Professional branding built to stand out.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Dynamic Success Modal (Popup overlay activated by form submission in app.js) -->
+  <div id="success-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-navy/80 backdrop-blur-sm px-6">
+    <!-- Success box framed layout -->
+    <div class="bg-white text-navy p-8 md:p-10 max-w-md w-full relative border border-teal shadow-2xl rounded-lg">
+      <!-- Success frame bracket elements -->
+      <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-teal"></div>
+      <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-teal"></div>
+      
+      <!-- Checkmark success icon -->
+      <div class="w-12 h-12 bg-teal/10 text-teal rounded-full flex items-center justify-center text-xl font-bold mb-6">✓</div>
+      
+      <h3 class="text-2xl font-heading font-extrabold mb-4 uppercase tracking-tight">Inquiry Received!</h3>
+      
+      <p id="success-modal-text" class="text-sm text-zinc-600 leading-relaxed mb-8">
+        Thank you! We've received your request and will follow up with you within 24 hours.
+      </p>
+
+      <button id="success-modal-close" class="w-full py-3 bg-teal text-navy font-heading font-bold text-xs uppercase tracking-widest hover:bg-teal/80 transition-colors">
+        Awesome, Got It
+      </button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

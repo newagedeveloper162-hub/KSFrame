@@ -1,0 +1,331 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+:root {
+  --color-navy: #1B1B2F;
+  --color-teal: #2EC4B6;
+  --color-coral: #FF6B6B;
+  --color-gold: #F9A825;
+  --color-offwhite: #F8F9FA;
+  --color-white: #FFFFFF;
+  --color-charcoal: #2D3436;
+  --color-softgray: #DFE6E9;
+  
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-accent: 'Playfair Display', serif;
+}
+
+/* Base Styles */
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-offwhite);
+  color: var(--color-charcoal);
+  font-family: var(--font-body);
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-charcoal);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: var(--font-heading);
+  color: var(--color-navy);
+}
+
+.font-accent {
+  font-family: var(--font-accent);
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-navy);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-teal);
+  border: 2px solid var(--color-navy);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #25a89b;
+}
+
+/* Glassmorphism Navigation Bar */
+.glass-nav {
+  background: rgba(27, 27, 47, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(46, 196, 182, 0.15);
+}
+
+/* Frame Motif System */
+.frame-box {
+  position: relative;
+  border: 1px solid var(--color-softgray);
+  padding: 2rem;
+  background-color: var(--color-white);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.frame-box-dark {
+  position: relative;
+  border: 1px solid rgba(46, 196, 182, 0.2);
+  padding: 2rem;
+  background-color: var(--color-navy);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Frame Corner Brackets */
+.frame-box::before, .frame-box::after,
+.frame-box-dark::before, .frame-box-dark::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+/* Light Frame Corners (using Teal / Navy) */
+.frame-box::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid var(--color-teal);
+  border-left: 2px solid var(--color-teal);
+}
+
+.frame-box::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid var(--color-teal);
+  border-right: 2px solid var(--color-teal);
+}
+
+/* Dark Frame Corners */
+.frame-box-dark::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid var(--color-teal);
+  border-left: 2px solid var(--color-teal);
+}
+
+.frame-box-dark::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid var(--color-teal);
+  border-right: 2px solid var(--color-teal);
+}
+
+/* Hover effects for frame boxes */
+.frame-box:hover, .frame-box-dark:hover {
+  border-color: var(--color-teal);
+  box-shadow: 0 10px 30px -15px rgba(27, 27, 47, 0.1);
+}
+
+.frame-box:hover::before, .frame-box-dark:hover::before {
+  transform: translate(-3px, -3px);
+  width: 18px;
+  height: 18px;
+}
+
+.frame-box:hover::after, .frame-box-dark:hover::after {
+  transform: translate(3px, 3px);
+  width: 18px;
+  height: 18px;
+}
+
+/* Header Framing decoration */
+.section-header-frame {
+  display: inline-block;
+  position: relative;
+  padding: 0.5rem 1.5rem;
+  border: 1px dashed rgba(46, 196, 182, 0.4);
+}
+
+.section-header-frame::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  width: 6px;
+  height: 6px;
+  border-top: 2px solid var(--color-coral);
+  border-left: 2px solid var(--color-coral);
+}
+
+.section-header-frame::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  right: -3px;
+  width: 6px;
+  height: 6px;
+  border-bottom: 2px solid var(--color-coral);
+  border-right: 2px solid var(--color-coral);
+}
+
+/* Navigation button customization */
+.nav-btn {
+  background-color: var(--color-teal);
+  color: var(--color-navy);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  transition: all 0.2s ease;
+  border: 1px solid var(--color-teal);
+}
+
+.nav-btn:hover {
+  background-color: transparent;
+  color: var(--color-teal);
+}
+
+/* Primary Teal CTA */
+.btn-teal {
+  background-color: var(--color-teal);
+  color: var(--color-navy);
+  border: 2px solid var(--color-teal);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-teal:hover {
+  background-color: transparent;
+  color: var(--color-teal);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -10px rgba(46, 196, 182, 0.4);
+}
+
+/* Secondary Coral CTA */
+.btn-coral {
+  background-color: var(--color-coral);
+  color: var(--color-white);
+  border: 2px solid var(--color-coral);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-coral:hover {
+  background-color: transparent;
+  color: var(--color-coral);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -10px rgba(255, 107, 107, 0.4);
+}
+
+/* Transparent framed CTA */
+.btn-framed {
+  background-color: transparent;
+  color: var(--color-navy);
+  border: 2px solid var(--color-navy);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-framed:hover {
+  background-color: var(--color-navy);
+  color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+.btn-framed-dark {
+  background-color: transparent;
+  color: var(--color-white);
+  border: 2px solid var(--color-white);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-framed-dark:hover {
+  background-color: var(--color-white);
+  color: var(--color-navy);
+  transform: translateY(-2px);
+}
+
+/* Interactive custom card grid */
+.accent-card-teal {
+  border-top: 4px solid var(--color-teal);
+}
+
+.accent-card-coral {
+  border-top: 4px solid var(--color-coral);
+}
+
+/* Background Grids & Dots */
+.bg-grid-dots {
+  background-image: radial-gradient(rgba(27, 27, 47, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.bg-grid-dots-dark {
+  background-image: radial-gradient(rgba(46, 196, 182, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Reveal on scroll system */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Gallery transitions */
+.gallery-item {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-item.hidden-item {
+  opacity: 0;
+  transform: scale(0.9);
+  pointer-events: none;
+  position: absolute;
+  z-index: -10;
+}
+
+/* Pulsing highlight badge */
+.glow-dot {
+  position: relative;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-teal);
+  border-radius: 50%;
+}
+
+.glow-dot::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--color-teal);
+  opacity: 0.4;
+  animation: pulse-ring 2s cubic-bezier(0.215, 0.610, 0.355, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.5); opacity: 0.8; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+/* Gradient accent for special items */
+.gradient-bar {
+  background: linear-gradient(90deg, var(--color-navy) 0%, var(--color-teal) 100%);
+}
+
+.gradient-accent-coral {
+  background: linear-gradient(135deg, var(--color-coral) 0%, var(--color-gold) 100%);
+}
