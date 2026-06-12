@@ -58,11 +58,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     navLinks.forEach(link => {
-      link.classList.remove('text-violet-400', 'font-medium');
+      link.classList.remove('text-teal', 'font-medium');
       link.classList.add('text-zinc-400');
       if (link.getAttribute('href') === `#${currentSectionId}`) {
         link.classList.remove('text-zinc-400');
-        link.classList.add('text-violet-400', 'font-medium');
+        link.classList.add('text-teal', 'font-medium');
       }
     });
   });
@@ -75,13 +75,11 @@ document.addEventListener('DOMContentLoaded', () => {
     tab.addEventListener('click', () => {
       const targetSegment = tab.getAttribute('data-segment');
 
-      // Update tab active classes
+      // Update tab active classes to use KSFrames Brand Identity (Teal & Navy)
       segmentTabs.forEach(t => {
-        t.classList.remove('bg-violet-600', 'text-white', 'border-violet-500');
-        t.classList.add('bg-zinc-900', 'text-zinc-400', 'border-zinc-800', 'hover:border-zinc-700');
+        t.className = "segment-tab px-6 py-3 border border-zinc-800 bg-zinc-900 text-zinc-400 font-heading font-bold text-sm uppercase tracking-wider hover:border-zinc-700 transition-all";
       });
-      tab.classList.remove('bg-zinc-900', 'text-zinc-400', 'border-zinc-800', 'hover:border-zinc-700');
-      tab.classList.add('bg-violet-600', 'text-white', 'border-violet-500');
+      tab.className = "segment-tab px-6 py-3 border border-teal bg-teal text-navy font-heading font-bold text-sm uppercase tracking-wider transition-all";
 
       // Update content visibility
       segmentContents.forEach(content => {
@@ -99,41 +97,206 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- Filterable Portfolio Gallery ---
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const galleryItems = document.querySelectorAll('.gallery-item');
+  // --- Dynamic Filterable Portfolio Gallery ---
+  const galleryGrid = document.getElementById('gallery-grid');
+  let activeFilter = 'all';
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
+  function setupGalleryFiltering() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    
+    filterBtns.forEach(btn => {
       const filterValue = btn.getAttribute('data-filter');
+      
+      // Initial button state styling (Teal/Navy active, White/Zinc inactive)
+      if (filterValue === activeFilter) {
+        btn.className = "filter-btn px-5 py-2 border border-teal bg-teal text-navy font-heading font-bold text-xs uppercase tracking-wider transition-all";
+      } else {
+        btn.className = "filter-btn px-5 py-2 border border-zinc-200 bg-white text-zinc-500 font-heading font-bold text-xs uppercase tracking-wider hover:bg-zinc-100 transition-all";
+      }
+      
+      // We rewrite event listener to prevent duplicate binding issues if setup is rerun
+      const newBtn = btn.cloneNode(true);
+      btn.parentNode.replaceChild(newBtn, btn);
+    });
 
-      // Update button active states
-      filterBtns.forEach(b => {
-        b.classList.remove('bg-violet-600', 'text-white', 'border-violet-500');
-        b.classList.add('bg-zinc-900', 'text-zinc-400', 'border-zinc-800', 'hover:bg-zinc-800');
-      });
-      btn.classList.remove('bg-zinc-900', 'text-zinc-400', 'border-zinc-800', 'hover:bg-zinc-800');
-      btn.classList.add('bg-violet-600', 'text-white', 'border-violet-500');
-
-      // Filter gallery cards
-      galleryItems.forEach(item => {
-        const itemCategories = item.getAttribute('data-category').split(' ');
-        if (filterValue === 'all' || itemCategories.includes(filterValue)) {
-          item.classList.remove('hidden-item');
-          // Quick timeout to let display restore before opacity transitions in
-          setTimeout(() => {
-            item.style.position = 'relative';
-            item.style.zindex = '1';
-          }, 50);
-        } else {
-          item.classList.add('hidden-item');
-          setTimeout(() => {
-            item.style.position = 'absolute';
-          }, 400); // match transition duration
-        }
+    // Re-select and bind event listeners
+    const freshFilterBtns = document.querySelectorAll('.filter-btn');
+    freshFilterBtns.forEach(btn => {
+      const filterValue = btn.getAttribute('data-filter');
+      
+      btn.addEventListener('click', () => {
+        activeFilter = filterValue;
+        
+        // Update active class on clicked button
+        freshFilterBtns.forEach(b => {
+          b.className = "filter-btn px-5 py-2 border border-zinc-200 bg-white text-zinc-500 font-heading font-bold text-xs uppercase tracking-wider hover:bg-zinc-100 transition-all";
+        });
+        btn.className = "filter-btn px-5 py-2 border border-teal bg-teal text-navy font-heading font-bold text-xs uppercase tracking-wider transition-all";
+        
+        // Filter gallery items
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        galleryItems.forEach(item => {
+          const itemCategories = item.getAttribute('data-category').split(' ');
+          if (filterValue === 'all' || itemCategories.includes(filterValue)) {
+            item.classList.remove('hidden-item');
+            setTimeout(() => {
+              item.style.position = 'relative';
+              item.style.zIndex = '1';
+            }, 50);
+          } else {
+            item.classList.add('hidden-item');
+            setTimeout(() => {
+              if (item.classList.contains('hidden-item')) {
+                item.style.position = 'absolute';
+              }
+            }, 400); // matches CSS transition time
+          }
+        });
       });
     });
-  });
+
+    // Apply active filter instantly to dynamic list
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    galleryItems.forEach(item => {
+      const itemCategories = item.getAttribute('data-category').split(' ');
+      if (activeFilter === 'all' || itemCategories.includes(activeFilter)) {
+        item.classList.remove('hidden-item');
+        item.style.position = 'relative';
+        item.style.zIndex = '1';
+      } else {
+        item.classList.add('hidden-item');
+        item.style.position = 'absolute';
+      }
+    });
+  }
+
+  function renderGallery() {
+    if (!galleryGrid || typeof PORTFOLIO_DATA === 'undefined') return;
+    
+    galleryGrid.innerHTML = '';
+    
+    PORTFOLIO_DATA.forEach(item => {
+      let placeholderHTML = '';
+      let categoryLabel = '';
+      let categoryColorClass = '';
+      
+      if (item.category === 'web') {
+        placeholderHTML = `
+          <div class="w-full h-36 bg-zinc-100 border border-zinc-200 flex flex-col justify-between p-3 rounded-md mb-4 relative overflow-hidden group">
+            <div class="flex items-center gap-1.5 border-b border-zinc-200 pb-2 mb-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-zinc-300"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-zinc-300"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-zinc-300"></span>
+              <div class="h-3 w-2/3 bg-zinc-200 rounded ml-2"></div>
+            </div>
+            <div class="space-y-2 flex-grow">
+              <div class="h-4 w-4/5 bg-zinc-300 rounded"></div>
+              <div class="h-2 w-full bg-zinc-200 rounded"></div>
+              <div class="h-2 w-5/6 bg-zinc-200 rounded"></div>
+            </div>
+            <div class="h-5 w-20 bg-teal/20 rounded"></div>
+          </div>
+        `;
+        categoryLabel = "Web Development";
+        categoryColorClass = "text-teal";
+      } else if (item.category === 'design') {
+        placeholderHTML = `
+          <div class="w-full h-36 bg-zinc-100 border border-zinc-200 flex flex-col justify-between p-3 rounded-md mb-4 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-tr from-coral/10 to-teal/10"></div>
+            <div class="relative h-full flex flex-col justify-between z-10">
+              <div class="h-4 w-2/3 bg-coral/20 rounded"></div>
+              <div class="border border-zinc-300 w-16 h-16 self-center rounded flex items-center justify-center text-xs font-bold font-heading text-zinc-400">FRAME</div>
+              <div class="h-2 w-1/2 bg-zinc-300 rounded"></div>
+            </div>
+          </div>
+        `;
+        categoryLabel = "Poster Design";
+        categoryColorClass = "text-coral";
+      } else if (item.category === 'video') {
+        placeholderHTML = `
+          <div class="w-full h-36 bg-zinc-100 border border-zinc-200 flex items-center justify-center rounded-md mb-4 relative overflow-hidden">
+            <div class="absolute inset-y-0 w-24 bg-zinc-200 border-l border-r border-zinc-300 flex flex-col justify-between py-4 px-2">
+              <div class="h-2 w-full bg-zinc-300 rounded"></div>
+              <!-- Play button graphic -->
+              <div class="w-8 h-8 rounded-full bg-teal/20 flex items-center justify-center self-center text-teal">▶</div>
+              <div class="h-2 w-2/3 bg-zinc-300 rounded"></div>
+            </div>
+          </div>
+        `;
+        categoryLabel = "Video Editing";
+        categoryColorClass = "text-teal";
+      } else if (item.category === 'resume') {
+        placeholderHTML = `
+          <div class="w-full h-36 bg-zinc-100 border border-zinc-200 p-3 rounded-md mb-4 flex gap-3 overflow-hidden">
+            <div class="w-1/3 bg-zinc-200 h-full rounded flex flex-col gap-2 p-1.5">
+              <div class="w-8 h-8 rounded-full bg-zinc-300 self-center"></div>
+              <div class="h-1.5 w-full bg-zinc-300 rounded"></div>
+              <div class="h-1.5 w-2/3 bg-zinc-300 rounded"></div>
+            </div>
+            <div class="flex-grow space-y-2 py-1">
+              <div class="h-3 w-4/5 bg-zinc-300 rounded"></div>
+              <div class="h-1.5 w-full bg-zinc-200 rounded"></div>
+              <div class="h-1.5 w-full bg-zinc-200 rounded"></div>
+              <div class="h-1.5 w-full bg-zinc-200 rounded"></div>
+              <div class="h-1.5 w-5/6 bg-zinc-200 rounded"></div>
+            </div>
+          </div>
+        `;
+        categoryLabel = "Resume Polish";
+        categoryColorClass = "text-coral";
+      } else {
+        placeholderHTML = `
+          <div class="w-full h-36 bg-zinc-100 border border-zinc-200 flex items-center justify-center rounded-md mb-4 relative overflow-hidden">
+            <div class="text-zinc-300 font-heading text-xs font-bold uppercase tracking-wider">KSFRAMES</div>
+          </div>
+        `;
+        categoryLabel = "Creative Asset";
+        categoryColorClass = "text-teal";
+      }
+      
+      const card = document.createElement('div');
+      card.className = "gallery-item frame-box flex flex-col justify-between";
+      card.setAttribute('data-category', item.category);
+      card.setAttribute('id', item.id);
+      
+      const tagsHTML = item.tags && item.tags.length > 0 ? `
+        <div class="flex flex-wrap gap-1 mt-3">
+          ${item.tags.map(tag => `<span class="bg-zinc-200/50 text-zinc-600 text-[9px] px-2 py-0.5 rounded border border-zinc-300/40 font-heading font-medium uppercase tracking-wider">${tag}</span>`).join('')}
+        </div>
+      ` : '';
+      
+      card.innerHTML = `
+        <div>
+          ${placeholderHTML}
+          <span class="text-xs font-heading font-semibold ${categoryColorClass} uppercase tracking-widest">${categoryLabel}</span>
+          <h4 class="font-heading font-bold text-navy text-base mt-1">
+            ${item.link && item.link !== '#' ? `<a href="${item.link}" class="hover:text-teal transition-colors">${item.title}</a>` : item.title}
+          </h4>
+        </div>
+        <div class="flex flex-col justify-between flex-grow">
+          <p class="text-zinc-500 text-xs mt-2">${item.description}</p>
+          ${tagsHTML}
+        </div>
+      `;
+      
+      galleryGrid.appendChild(card);
+    });
+    
+    setupGalleryFiltering();
+  }
+
+  // Hook PORTFOLIO_DATA original push array method to auto-re-render
+  if (typeof PORTFOLIO_DATA !== 'undefined') {
+    const originalPush = PORTFOLIO_DATA.push;
+    PORTFOLIO_DATA.push = function(...args) {
+      const result = originalPush.apply(this, args);
+      renderGallery();
+      return result;
+    };
+  }
+
+  // Initial render of gallery items
+  renderGallery();
 
   // --- Interactive Bundle Price Calculator ---
   const pricingCheckboxes = document.querySelectorAll('.calc-checkbox');
