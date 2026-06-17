@@ -460,7 +460,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initial Calculation
   calculateQuote();
 
-  // --- Contact Form Submission Handling ---
+ // --- Contact Form Submission Handling ---
   const contactForm = document.getElementById('contact-form');
   const successModal = document.getElementById('success-modal');
   const successModalClose = document.getElementById('success-modal-close');
@@ -487,60 +487,79 @@ document.addEventListener('DOMContentLoaded', () => {
       const email = document.getElementById('contact-email').value;
       const role = document.getElementById('contact-role').value;
       const service = selectedServicesInput.value;
+      const details = document.getElementById('contact-details').value; // Added this to capture the textarea
 
-      // Simulate network request delay (800ms)
-      setTimeout(() => {
-        // Dynamic, personalized modal confirmation messaging
-        let customMessage = `Thank you, <strong>${name}</strong>! We have received your request for `;
-        
-        const serviceLabels = {
-          'web': 'a Custom Portfolio Website',
-          'brand': 'Poster & Custom Brand Templates',
-          'video': 'Reel & Social Video Editing',
-          'resume': 'Professional Resume Polishing',
-          'bundle': 'a Custom Project Bundle Pack',
-          'other': 'Creative Agency Consulting'
-        };
+      // Prepare data for EmailJS
+      const templateParams = {
+        from_name: name,
+        user_email: email,
+        role: role,
+        service: service,
+        message: details
+      };
 
-        customMessage += `<strong>${serviceLabels[service] || 'our services'}</strong>.`;
+      // Call EmailJS to send the email
+      emailjs.send('service_fx3wcug', 'template_jd3f54p', templateParams)
+        .then((response) => {
+          console.log('SUCCESS!', response.status, response.text);
 
-        if (role === 'student') {
-          customMessage += `<br><br>🎓 <strong>Student Package benefits activated!</strong> Our team will verify your student ID and match you with our special budget pricing.`;
-        } else if (role === 'business') {
-          customMessage += `<br><br>🚀 <strong>Business Strategy fast-track:</strong> Our media lead will analyze your brand profile before our call to present initial asset recommendations.`;
-        } else {
-          customMessage += `<br><br>💼 <strong>Professional consultation:</strong> A personal branding specialist will review your materials to optimize your digital resume and portfolio layout.`;
-        }
+          // Dynamic, personalized modal confirmation messaging
+          let customMessage = `Thank you, <strong>${name}</strong>! We have received your request for `;
+          
+          const serviceLabels = {
+            'web': 'a Custom Portfolio Website',
+            'brand': 'Poster & Custom Brand Templates',
+            'video': 'Reel & Social Video Editing',
+            'resume': 'Professional Resume Polishing',
+            'bundle': 'a Custom Project Bundle Pack',
+            'other': 'Creative Agency Consulting'
+          };
 
-        customMessage += `<br><br>We have sent a confirmation email to <strong>${email}</strong> and will follow up within 24 hours to schedule our onboarding session!`;
+          customMessage += `<strong>${serviceLabels[service] || 'our services'}</strong>.`;
 
-        if (successModalText) {
-          successModalText.innerHTML = customMessage;
-        }
-
-        // Reset button and form
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = originalBtnText;
-        contactForm.reset();
-        
-        // Reset calculator checklist
-        pricingCheckboxes.forEach(cb => {
-          if (cb.getAttribute('data-service') === 'web') {
-            cb.checked = true; // reset to default standard state
+          if (role === 'student') {
+            customMessage += `<br><br>🎓 <strong>Student Package benefits activated!</strong> Our team will verify your student ID and match you with our special budget pricing.`;
+          } else if (role === 'business') {
+            customMessage += `<br><br>🚀 <strong>Business Strategy fast-track:</strong> Our media lead will analyze your brand profile before our call to present initial asset recommendations.`;
           } else {
-            cb.checked = false;
+            customMessage += `<br><br>💼 <strong>Professional consultation:</strong> A personal branding specialist will review your materials to optimize your digital resume and portfolio layout.`;
           }
-        });
-        if (studentDiscountToggle) studentDiscountToggle.checked = false;
-        calculateQuote();
 
-        // Open modal
-        if (successModal) {
-          successModal.classList.remove('hidden');
-          successModal.classList.add('flex');
-          document.body.classList.add('overflow-hidden');
-        }
-      }, 1000);
+          customMessage += `<br><br>We have sent a confirmation email to <strong>${email}</strong> and will follow up within 24 hours to schedule our onboarding session!`;
+
+          if (successModalText) {
+            successModalText.innerHTML = customMessage;
+          }
+
+          // Reset button and form
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnText;
+          contactForm.reset();
+          
+          // Reset calculator checklist
+          pricingCheckboxes.forEach(cb => {
+            if (cb.getAttribute('data-service') === 'web') {
+              cb.checked = true; // reset to default standard state
+            } else {
+              cb.checked = false;
+            }
+          });
+          if (studentDiscountToggle) studentDiscountToggle.checked = false;
+          calculateQuote();
+
+          // Open modal
+          if (successModal) {
+            successModal.classList.remove('hidden');
+            successModal.classList.add('flex');
+            document.body.classList.add('overflow-hidden');
+          }
+        }, (error) => {
+          // Error handling
+          console.log('FAILED...', error);
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnText;
+          alert("Oops! Something went wrong while sending the email. Please try again later.");
+        });
     });
   }
 
@@ -566,4 +585,5 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+});
 });
