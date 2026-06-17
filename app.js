@@ -217,7 +217,6 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="w-full h-36 bg-zinc-100 border border-zinc-200 flex items-center justify-center rounded-md mb-4 relative overflow-hidden">
             <div class="absolute inset-y-0 w-24 bg-zinc-200 border-l border-r border-zinc-300 flex flex-col justify-between py-4 px-2">
               <div class="h-2 w-full bg-zinc-300 rounded"></div>
-              <!-- Play button graphic -->
               <div class="w-8 h-8 rounded-full bg-teal/20 flex items-center justify-center self-center text-teal">▶</div>
               <div class="h-2 w-2/3 bg-zinc-300 rounded"></div>
             </div>
@@ -460,7 +459,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initial Calculation
   calculateQuote();
 
- // --- Contact Form Submission Handling ---
+  // ✅ --- Contact Form Submission Handling with EmailJS --- ✅
   const contactForm = document.getElementById('contact-form');
   const successModal = document.getElementById('success-modal');
   const successModalClose = document.getElementById('success-modal-close');
@@ -487,7 +486,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const email = document.getElementById('contact-email').value;
       const role = document.getElementById('contact-role').value;
       const service = selectedServicesInput.value;
-      const details = document.getElementById('contact-details').value; // Added this to capture the textarea
+      const details = document.getElementById('contact-details').value;
 
       // Prepare data for EmailJS
       const templateParams = {
@@ -554,7 +553,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.classList.add('overflow-hidden');
           }
         }, (error) => {
-          // Error handling
           console.log('FAILED...', error);
           submitBtn.disabled = false;
           submitBtn.innerHTML = originalBtnText;
@@ -585,5 +583,4 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-});
 });
